@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float veloc = 7.5f;
-    public float dashSpeed = 10f;
+    public float dashSpeed = 15.75f;
     public float dashDuration = 0.5f;
     public float entradaHorizontal;
     public float entradaVertical;
@@ -18,7 +18,10 @@ public class Player : MonoBehaviour
     public int _vidasLimite = 5;// Limite máximo de vidas do jogador
     public float rotationSpeed = 5000000000000.0f;
     private Quaternion initialRotation;
+
     private GerenciadorIU _iuGerenciador;
+    private GerenciadorDoJogo _gerenciadorDoJogo;
+
     private bool isDashing = false;
     private Rigidbody2D rb;
     public GameObject _dashingPlayer;
@@ -26,18 +29,25 @@ public class Player : MonoBehaviour
     public bool possoUsarCampoDeForca = false;
     private int currentLives = 1;// Inicializa com uma vida
     public GameObject _explosaoPlayer;
+
+
     public void DanoAoPlayer()
     {
         _vidasLimite--;
         _iuGerenciador.AtualizaVidas(_vidasLimite);
 
+        if (possoUsarCampoDeForca == true)
+        {
+            possoUsarCampoDeForca = false;
+            _vidasLimite = (Random.Range(0, 4));
+            return;
+        }
+
         if (_vidasLimite < 1)
         {
             Instantiate(_explosaoPlayer, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
-        }
-      
-       
+        }    
     }
 
     public void VidasExtras(int amount) 
@@ -250,6 +260,10 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.35f);
         isDashing = false;
     }
-
+     
+    public void LigarCampoDeForca()
+    {
+        possoUsarCampoDeForca = true;
+    }
    
 } 

@@ -40,7 +40,6 @@ public class IAInimigo : MonoBehaviour
             Player player = other.GetComponent<Player>();
             if (player != null) 
             {
-              
                 player.DanoAoPlayer();
                 Instantiate(_explosaoDoInimigo, transform.position, Quaternion.identity);
             }

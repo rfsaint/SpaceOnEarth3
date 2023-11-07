@@ -8,6 +8,7 @@ public class PUp : MonoBehaviour
     private float Velocidade = 3.5f;
     public int PUpID = 0;
     public int _vidaParaAdicionar = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,26 +27,28 @@ public class PUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Fui Pego no flagra"); 
+        Debug.Log("Fui Pego no flagra");
         if (other.tag == "Player")
         {
             Player player = other.GetComponent<Player>();
-            if (player != null){
-                if (PUpID== 0)
+            if (player != null)
+            {
+                if (PUpID == 0)
                 {
-                     player.LigarPUDisparoTriplo();
+                    player.LigarPUDisparoTriplo();
                 }
-                else if (PUpID == 1) 
+                else if (PUpID == 1)
                 {
                     player.VidasExtras(_vidaParaAdicionar);
                 }
-                else if (PUpID == 2)
+                else if (PUpID == 2) 
                 {
-                    //Adicionar Campo de Força 
+                    player.LigarCampoDeForca();
                 }
-               
             }
             Destroy(this.gameObject);
         }
+
     }
+
 }
