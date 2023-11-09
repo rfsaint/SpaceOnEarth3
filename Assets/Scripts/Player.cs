@@ -37,9 +37,10 @@ public class Player : MonoBehaviour
         _iuGerenciador.AtualizaVidas(_vidasLimite);
 
         if (possoUsarCampoDeForca == true)
-        {
+        {           
             possoUsarCampoDeForca = false;
-            _vidasLimite = (Random.Range(0, 4));
+            _vidasLimite = (Random.Range(1,4));
+            _iuGerenciador.AtualizaVidas(_vidasLimite);
             return;
         }
 

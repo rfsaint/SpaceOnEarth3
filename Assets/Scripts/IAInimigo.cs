@@ -29,13 +29,13 @@ public class IAInimigo : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("O objeto " + name + " colidiu com o objeto " + other.name);
-        if (other.tag == "Tiro")
+        if ( other.tag == "Tiro" )
         {
            Destroy(other.gameObject);
             Instantiate(_explosaoDoInimigo, transform.position, Quaternion.identity);
             _gerenciadorIU.AtualizaPlacar();
         }
-       if ( other.tag == "Player")
+       if ( other.tag == "Player" )
         {
             Player player = other.GetComponent<Player>();
             if (player != null) 

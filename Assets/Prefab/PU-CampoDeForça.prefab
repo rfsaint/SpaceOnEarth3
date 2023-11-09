@@ -101,7 +101,6 @@ MonoBehaviour:
   Velocidade: 3.5
   PUpID: 2
   _vidaParaAdicionar: 1
-  CampoDeForca: {fileID: 0}
 --- !u!58 &7702321639960673966
 CircleCollider2D:
   m_ObjectHideFlags: 0
