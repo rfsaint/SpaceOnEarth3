@@ -507,7 +507,6 @@ MonoBehaviour:
   _powerUps:
   - {fileID: 534131757858318661, guid: f94a48d8069236443bdd3f37ecfaa0f7, type: 3}
   - {fileID: 5573607893293970360, guid: 3d0a793ae3f80b24d8a061f9e15bf816, type: 3}
-  - {fileID: 4176991939915935306, guid: 7dd43c3f9b0181943b70a5d1fd0da807, type: 3}
 --- !u!4 &188164641
 Transform:
   m_ObjectHideFlags: 0
@@ -725,6 +724,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'BossIdle '
       objectReference: {fileID: 0}
+    - target: {fileID: 3514432903214564396, guid: 0670bc034e478614d92942a5db53453b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5364346519609425740, guid: 0670bc034e478614d92942a5db53453b, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -791,7 +794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &739114586
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1105,6 +1108,22 @@ PrefabInstance:
     - target: {fileID: 2752787259856055721, guid: 80af3d059ddde854bb6aac487c759edd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968630840341988528, guid: 80af3d059ddde854bb6aac487c759edd, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5281032
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968630840341988528, guid: 80af3d059ddde854bb6aac487c759edd, type: 3}
+      propertyPath: m_Size.y
+      value: 0.23006323
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968630840341988528, guid: 80af3d059ddde854bb6aac487c759edd, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.020697206
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968630840341988528, guid: 80af3d059ddde854bb6aac487c759edd, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.004139468
       objectReference: {fileID: 0}
     - target: {fileID: 6267299570746777405, guid: 80af3d059ddde854bb6aac487c759edd, type: 3}
       propertyPath: m_Name

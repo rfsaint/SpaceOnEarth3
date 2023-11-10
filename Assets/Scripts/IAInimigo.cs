@@ -9,15 +9,18 @@ public class IAInimigo : MonoBehaviour
     [SerializeField]
     private GameObject _explosaoDoInimigo;
     private GerenciadorIU _gerenciadorIU;
+    public Player ScriptPublic ;
     // Start is called before the first frame update
     void Start()
     {
         _gerenciadorIU = GameObject.Find("Canvas").GetComponent<GerenciadorIU>();
+        ScriptPublic = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        _velocInimigo += 0.00012f;
         transform.Translate(Vector3.left * _velocInimigo * Time.deltaTime);
 
         if (transform.position.x < -9.28f)
@@ -35,7 +38,7 @@ public class IAInimigo : MonoBehaviour
             Instantiate(_explosaoDoInimigo, transform.position, Quaternion.identity);
             _gerenciadorIU.AtualizaPlacar();
         }
-       if ( other.tag == "Player" )
+        if ( other.tag == "Player" )
         {
             Player player = other.GetComponent<Player>();
             if (player != null) 
@@ -43,7 +46,12 @@ public class IAInimigo : MonoBehaviour
                 player.DanoAoPlayer();
                 Instantiate(_explosaoDoInimigo, transform.position, Quaternion.identity);
             }
+            else if (player.possoUsarCampoDeForca == false)
+            {
+                player.DanoAoPlayer();
+            }
+ 
         }
-        Destroy(this.gameObject);
+    Destroy(this.gameObject);
     }
 }

@@ -16,6 +16,7 @@ public class BackGround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        velocidade += 0.000010f;
         float novoPosicao = Mathf.Repeat(Time.time * velocidade,reposicao);
         transform.position = posicaoInicial + Vector3.left * novoPosicao;
     }

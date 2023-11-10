@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     public bool possoUsarCampoDeForca = false;
     private int currentLives = 1;// Inicializa com uma vida
     public GameObject _explosaoPlayer;
-
+    public GameObject _campoDeForca;
 
     public void DanoAoPlayer()
     {
@@ -37,17 +37,19 @@ public class Player : MonoBehaviour
         _iuGerenciador.AtualizaVidas(_vidasLimite);
 
         if (possoUsarCampoDeForca == true)
-        {           
-            possoUsarCampoDeForca = false;
-            _vidasLimite = (Random.Range(1,4));
+        {
             _iuGerenciador.AtualizaVidas(_vidasLimite);
+            possoUsarCampoDeForca = false;
+            _campoDeForca.SetActive(false);
+              
             return;
         }
 
         if (_vidasLimite < 1)
         {
             Instantiate(_explosaoPlayer, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            _iuGerenciador.AtualizaVidas(_vidasLimite);
+            Destroy(this.gameObject);           
         }    
     }
 
@@ -56,9 +58,9 @@ public class Player : MonoBehaviour
         _vidasLimite++;
          if (_vidasLimite < 5)
         {
+            _iuGerenciador.AtualizaVidas(_vidasLimite);
             currentLives += amount;
             currentLives = Mathf.Clamp(currentLives, 0, _vidasLimite);
-           _iuGerenciador.AtualizaVidas(_vidasLimite);
         }
         else if ( _vidasLimite != 5 )
         {
@@ -70,6 +72,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
    public void Start()
     {
+       
         Debug.Log("Método Start de" + this.name);
         transform.position = new Vector3(-7.5f, 0, 0);
         initialRotation = transform.rotation;
@@ -84,6 +87,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        dashSpeed += 0.0010f;
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            // algo
+        }
+        MultplicateVeloc();
         if (isDashing == true)
         {
             // Ative o GameObject do sprite do Dash
@@ -97,6 +107,18 @@ public class Player : MonoBehaviour
             _dashingPlayer.SetActive(true);
         }
 
+        if  (Input.GetKeyDown(KeyCode.C) && !possoUsarCampoDeForca)
+        {
+            if (Input.GetKeyDown(KeyCode.C) && !possoUsarCampoDeForca)
+            {
+                _campoDeForca.SetActive(false);
+            }
+            else if (Input.GetKeyDown(KeyCode.C) && !possoUsarCampoDeForca)
+            {
+                _campoDeForca.SetActive(true);
+            }
+            StartCoroutine(TimeCampoDeForca());
+        }
 
         if (Input.GetKeyDown(KeyCode.L) && !isDashing)
         {
@@ -264,7 +286,24 @@ public class Player : MonoBehaviour
      
     public void LigarCampoDeForca()
     {
+        _campoDeForca.SetActive(true);
         possoUsarCampoDeForca = true;
+    }
+
+    public IEnumerator TimeCampoDeForca ()
+    {
+        LigarCampoDeForca();
+        yield return new WaitForSeconds(0.15f);
+    }
+
+    public IEnumerator MultplicateVeloc ()
+    {
+        while (true) 
+        {
+            veloc = veloc + 0.25f;
+            yield break;
+            new WaitForSeconds(0.05f);
+        }
     }
    
 } 

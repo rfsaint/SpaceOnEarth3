@@ -7,6 +7,7 @@ TagManager:
   - Tiro
   - Boss
   - Inimigo
+  - CampoDeForca
   layers:
   - Default
   - TransparentFX
