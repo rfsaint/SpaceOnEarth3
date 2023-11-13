@@ -281,6 +281,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 6267299570746777405}
+    - target: {fileID: -7194390262156693144, guid: 82806dc2587375448bbc227a2733686f, type: 3}
+      propertyPath: explosaoPrefab
+      value: 
+      objectReference: {fileID: 9178511950273028286, guid: 140b45e7ad1a1ff49bd6f3b7bf352921, type: 3}
     - target: {fileID: -3711276527621146567, guid: 82806dc2587375448bbc227a2733686f, type: 3}
       propertyPath: m_Size.x
       value: 0.5281032

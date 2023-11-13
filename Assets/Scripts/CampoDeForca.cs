@@ -1,64 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CampoDeForca : MonoBehaviour
 {
-    public int lives = 2;
-    public bool livesMult = false;
+    public GameObject explosaoPrefab; // Prefab da explosão
+    public int vidasEscudo = 3; // Número inicial de vidas do escudo
     public GameObject _campoDeForca;
-    public GameObject player;
-    public GameObject _explosao; 
-    // Start is called before the first frame update
-    void Start()
+
+    void Start ()
     {
-        _campoDeForca.SetActive(false); 
+        _campoDeForca.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if ( Input.GetKeyDown(KeyCode.C))
         {
-            MultLives();
-        }
-        else if ( lives >= 24 )
-        {
-            StartCoroutine(CampoDePoucaForca());
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "CampoDeForca")
-        {
-            CampoDeForca campoDeForca = other.GetComponent<CampoDeForca>();
-            if (campoDeForca == null || campoDeForca == false)
+            _campoDeForca.SetActive(true);
+            vidasEscudo += 1;
+            if ( vidasEscudo >= 25)
             {
-
-                lives = 0;
-                Destroy(this.gameObject);
+                vidasEscudo = 25;
             }
         }
-        else if (other.tag == "CampoDeForca")
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Inimigo"))
         {
-            lives--;
-            lives -= 1;
+            // Colisão com o inimigo
+            ReduzirVidaEscudo();
+
+            // Exibir explosão
+            ExibirExplosao();
+
+            // Opcional: Destruir o inimigo
+            Destroy(other.gameObject);
         }
     }
 
-    void MultLives()
+
+    private void ReduzirVidaEscudo()
     {
-        _campoDeForca.SetActive(true);
-        lives *= 2;
-    
-        return;
+        vidasEscudo--;
+
+        if (vidasEscudo == 0)
+        {
+            // Lógica para o escudo quando todas as vidas são perdidas
+            Debug.Log("O escudo foi destruído!");
+            Destroy(gameObject); // Ou desative o escudo, dependendo da sua lógica
+        }
     }
 
-    IEnumerator CampoDePoucaForca ()
+    private void ExibirExplosao()
     {
-
-        lives -= 1;
-        yield return new WaitForSeconds(1.25f);
+        if (explosaoPrefab != null)
+        {
+            // Instanciar a explosão
+            Instantiate(explosaoPrefab, transform.position, Quaternion.identity);
+        }
     }
-
 }

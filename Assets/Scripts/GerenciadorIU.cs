@@ -11,6 +11,7 @@ public class GerenciadorIU : MonoBehaviour
     public int placar;
     public Text textoPlacar;
     public GameObject _boss;
+
     // Start is called before the first frame update
     void Start()
     {

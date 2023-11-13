@@ -507,6 +507,9 @@ MonoBehaviour:
   _powerUps:
   - {fileID: 534131757858318661, guid: f94a48d8069236443bdd3f37ecfaa0f7, type: 3}
   - {fileID: 5573607893293970360, guid: 3d0a793ae3f80b24d8a061f9e15bf816, type: 3}
+  _tituloDaTela: {fileID: 739114585}
+  Ativar: 0
+  _fimDeJogo: 0
 --- !u!4 &188164641
 Transform:
   m_ObjectHideFlags: 0

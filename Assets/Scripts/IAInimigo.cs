@@ -21,6 +21,17 @@ public class IAInimigo : MonoBehaviour
     void Update()
     {
         _velocInimigo += 0.00012f;
+
+        if ( Input.GetKeyDown(KeyCode.P))
+        {
+            _velocInimigo = 0;
+        }
+
+        else if ( _velocInimigo >= 0.00012f )
+        {
+            _velocInimigo = 10.0f + 0.00012f;
+        }
+
         transform.Translate(Vector3.left * _velocInimigo * Time.deltaTime);
 
         if (transform.position.x < -9.28f)

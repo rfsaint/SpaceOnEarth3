@@ -17,6 +17,14 @@ public class BackGround : MonoBehaviour
     void Update()
     {
         velocidade += 0.000010f;
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            velocidade = 0;
+        }
+        else if ( velocidade >= 0.000010f )
+        {
+            velocidade = 7.5f + 0.5f;
+        }
         float novoPosicao = Mathf.Repeat(Time.time * velocidade,reposicao);
         transform.position = posicaoInicial + Vector3.left * novoPosicao;
     }

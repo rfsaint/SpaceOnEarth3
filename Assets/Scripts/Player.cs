@@ -88,6 +88,17 @@ public class Player : MonoBehaviour
     public void Update()
     {
         dashSpeed += 0.0010f;
+        veloc += 0.0010f;
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            dashSpeed = 0;
+            veloc = 0;
+        }
+        else if ( veloc >= 0.0010f || dashSpeed >= 0.0010f )
+        {
+            veloc = 7.5f + 0.5f;
+            dashSpeed = 15.75f + 0.5f;
+        }
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
