@@ -18,6 +18,18 @@ public class PUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Velocidade += 0.1f;
+
+        if ( Input.GetKeyDown(KeyCode.P) )
+        {
+            Velocidade = 0;
+        }
+
+        else if ( Velocidade >= 0.001f )
+        {
+            Velocidade = 3.5f + 0.01f;
+        }
+
         transform.Translate(Vector3.left * Velocidade * Time.deltaTime);
         if (transform.position.x < -9.28f)
         {

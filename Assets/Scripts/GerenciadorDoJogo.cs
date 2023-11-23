@@ -1,31 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GerenciadorDoJogo : MonoBehaviour
 {
-    public bool FimDeJogo = false;
-    public GameObject player;
-    private GerenciadorIU _gerenciadorIU;
+   public bool fimDeJogo;
+   public GameObject Player;
+   private GerenciadorIU gerenciadorIU;
+
     // Start is called before the first frame update
    private void Start()
    {
-        _gerenciadorIU = GameObject.Find("Canvas").GetComponent<GerenciadorIU>();
+        gerenciadorIU = GameObject.Find("Canvas").GetComponent<GerenciadorIU>();
+        fimDeJogo = true;
+         
    }
 
     // Update is called once per frame
     private void Update()
     {
-        if (FimDeJogo == true)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (fimDeJogo == true)
             {
-                Instantiate(player, Vector3.zero, Quaternion.identity);
-                FimDeJogo = false;
-                _gerenciadorIU.EsconderTelaInicial();
+                fimDeJogo = false;
+                Instantiate(Player, Vector3.zero, Quaternion.identity);
+                gerenciadorIU.EsconderTelaInicial();
             }
-
         }
-
     }
 }

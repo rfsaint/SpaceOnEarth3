@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public float tempoDeDisparo = 0.3f;
     public float podeDisparar = 0.0f;
     private bool methodActivated = false;
-    public int _vidasLimite = 5;// Limite máximo de vidas do jogador
+    public int _vidasLimite = 1;// Limite máximo de vidas do jogador
     public float rotationSpeed = 5000000000000.0f;
     private Quaternion initialRotation;
 
@@ -30,6 +30,11 @@ public class Player : MonoBehaviour
     private int currentLives = 1;// Inicializa com uma vida
     public GameObject _explosaoPlayer;
     public GameObject _campoDeForca;
+    public GameObject _morte;
+    public Transform _mortePlayer;
+    public Transform _pause;
+    public bool mortePlayer = false;
+    private SpawnManager SpawnManager;
 
     public void DanoAoPlayer()
     {
@@ -41,15 +46,16 @@ public class Player : MonoBehaviour
             _iuGerenciador.AtualizaVidas(_vidasLimite);
             possoUsarCampoDeForca = false;
             _campoDeForca.SetActive(false);
-              
             return;
         }
 
         if (_vidasLimite < 1)
         {
             Instantiate(_explosaoPlayer, transform.position, Quaternion.identity);
-            _iuGerenciador.AtualizaVidas(_vidasLimite);
-            Destroy(this.gameObject);           
+            _gerenciadorDoJogo.fimDeJogo = true;
+            _iuGerenciador.MostrarTelaInicial();
+            Destroy(this.gameObject);
+            
         }    
     }
 
@@ -72,14 +78,21 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
    public void Start()
     {
-       
+        _gerenciadorDoJogo = GameObject.Find("GerenciadorDoJogo").GetComponent<GerenciadorDoJogo>();
+        _morte.SetActive(false);
         Debug.Log("Método Start de" + this.name);
         transform.position = new Vector3(-7.5f, 0, 0);
         initialRotation = transform.rotation;
         _iuGerenciador = GameObject.Find("Canvas").GetComponent<GerenciadorIU>();
+
         if (_iuGerenciador != null ) 
         {
             _iuGerenciador.AtualizaVidas(_vidasLimite);
+        }
+
+        if (SpawnManager != null)
+        {
+            SpawnManager.IniciarCoroutines();
         }
         rb = GetComponent<Rigidbody2D>();
     }
@@ -87,6 +100,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        _mortePlayer.position = Vector3.zero;
+        _pause.position = Vector3.zero;
         dashSpeed += 0.0010f;
         veloc += 0.0010f;
         if (Input.GetKeyDown(KeyCode.P))
@@ -159,29 +174,29 @@ public class Player : MonoBehaviour
             // Por exemplo, movimento, ataque, etc.
 
  if (methodActivated)
+ {
+    // Coloque aqui o código que deseja executar quando o método estiver ativado.
+    Debug.Log("Método ativado!");
+ }
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            // Coloque aqui o código que deseja executar quando o método estiver ativado.
-            Debug.Log("Método ativado!");
-        }
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                // Rotaciona o jogador para cima
-                transform.Rotate(Vector3.left * rotationSpeed * Time.deltaTime);
+             // Rotaciona o jogador para cima
+            transform.Rotate(Vector3.left * rotationSpeed * Time.deltaTime);
                 
-            }
-            // Verifica se o jogador pressionou a tecla "S" para girar para baixo
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
-                // Rotaciona o jogador para baixo
-                transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime);
-            }
-            else
-            {
-                // Se nenhuma tecla estiver sendo pressionada, retorna à rotação inicial
-                transform.rotation = Quaternion.Lerp(transform.rotation, initialRotation, Time.deltaTime * 2.0f);
-            }
-
         }
+        // Verifica se o jogador pressionou a tecla "S" para girar para baixo
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            // Rotaciona o jogador para baixo
+            transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+           // Se nenhuma tecla estiver sendo pressionada, retorna à rotação inicial
+           transform.rotation = Quaternion.Lerp(transform.rotation, initialRotation, Time.deltaTime * 2.0f);
+        }
+
+    }
  }
 
    

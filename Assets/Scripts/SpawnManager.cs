@@ -4,60 +4,61 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public GameObject Player;
+    public Player player;
     [SerializeField]
     private GameObject _bossIdle;
     [SerializeField]
     private GameObject _inimigoPrefab;
     [SerializeField]
-    private GameObject [] _powerUps;
+    private GameObject[] _powerUps;
     public GameObject _tituloDaTela;
     public bool Ativar = false;
-    public bool _fimDeJogo = false;
+    public bool _fimDeJogo = true;
+    public int ApetarBotao = 0;
+    private GerenciadorIU _iuGerenciador;
+    public GerenciadorDoJogo GerenciadorDoJogo;
+
     // Start is called before the first frame update
     void Start()
     {
         _tituloDaTela.SetActive(true);
+        _iuGerenciador = GameObject.Find("Canvas").GetComponent<GerenciadorIU>();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && !Ativar)
-        {
-            _tituloDaTela.SetActive(false);
-            Debug.Log("Ativar Gerenciador de objetos.");
-            StartCoroutine(TimerButton());
-        }
+
     }
-    public IEnumerator TimerButton ()
+
+    public IEnumerator RotinaGeracaoInimigo()
     {
-        Ativar = true;
+            while (GerenciadorDoJogo == false)
+            {
+
+                Instantiate(_inimigoPrefab, new Vector3(-9.28f, Random.Range(5.3f, -5.3f), 0), Quaternion.identity);
+                yield return new WaitForSeconds(6.0f);
+
+            }
+    }
+
+  public IEnumerator RotinaGeracaoPU()
+        {
+            while (GerenciadorDoJogo == false)
+            {
+                int PowerUpsAleatorio = Random.Range(0, 2);
+
+                Instantiate((_powerUps[PowerUpsAleatorio]), new Vector3(-9.28f, Random.Range(5.3f, -5.3f), 0), Quaternion.identity);
+
+                yield return new WaitForSeconds(Random.Range(7, 2));
+            }
+        }
+
+    public void IniciarCoroutines()
+    {
         StartCoroutine(RotinaGeracaoInimigo());
         StartCoroutine(RotinaGeracaoPU());
-        yield return new WaitForSeconds(1.50f);
-    }
 
-    public IEnumerator RotinaGeracaoInimigo(){
-
-       while (true) 
-
-        {
-
-            Instantiate(_inimigoPrefab, new Vector3(-9.28f, Random.Range(5.3f, -5.3f), 0), Quaternion.identity);
-            yield return new WaitForSeconds(6.0f);
-
-        }
-    }
-
-    public IEnumerator RotinaGeracaoPU()
-    {
-        while (true)
-        {
-            int PowerUpsAleatorio  = Random.Range(0, 2);
-
-            Instantiate((_powerUps[PowerUpsAleatorio]), new Vector3(-9.28f, Random.Range(5.3f, -5.3f), 0), Quaternion.identity);
-
-            yield return new WaitForSeconds(Random.Range(7, 2));
-        }
     }
 }

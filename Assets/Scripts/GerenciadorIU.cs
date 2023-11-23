@@ -43,5 +43,7 @@ public class GerenciadorIU : MonoBehaviour
     public void EsconderTelaInicial()
     {
         tituloDaTela.SetActive(false);
+        placar = 0;
+        textoPlacar.text = "PLACAR:0";
     }
 }
