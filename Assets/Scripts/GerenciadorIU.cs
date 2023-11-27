@@ -12,6 +12,7 @@ public class GerenciadorIU : MonoBehaviour
     public int placar;
     public Text textoPlacar;
     public GameObject _boss;
+    public GameObject[] _objects; 
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,11 @@ public class GerenciadorIU : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+           Destroy(this._objects[0]);
+           Destroy(this._objects[1]);
+        }
     }
 
     public void AtualizaVidas (int vidasAtuais) 
@@ -39,13 +44,17 @@ public class GerenciadorIU : MonoBehaviour
     public void MostrarTelaDeMorte()
     {
         _morte.SetActive(true);
+      
+        Time.timeScale = 0;
+      
     }
 
     public void EsconderTelaInicial()
     {
         tituloDaTela.SetActive(false);
         _morte.SetActive(false);
+        Time.timeScale = 1;
         placar = 0;
-        textoPlacar.text = "PLACAR:0";
+        textoPlacar.text = "PLACAR: 0";
     }
 }

@@ -167,7 +167,20 @@ MonoBehaviour:
   mostrarImagemDasVidas: {fileID: 947635875}
   placar: 0
   textoPlacar: {fileID: 743115513}
-  _boss: {fileID: 0}
+  _boss: {fileID: 3514432903214564396, guid: 0670bc034e478614d92942a5db53453b, type: 3}
+  _objects:
+  - {fileID: 3812269077418646425, guid: 8ee7cd94ec6a7734c9d31bec8c07db57, type: 3}
+  - {fileID: 3514432903214564396, guid: 0670bc034e478614d92942a5db53453b, type: 3}
+  - {fileID: 60979423250044055, guid: 82806dc2587375448bbc227a2733686f, type: 3}
+  - {fileID: 1951716949464390336, guid: e188527016d021d4ca7c23bbc52b7852, type: 3}
+  - {fileID: 9178511950273028286, guid: 140b45e7ad1a1ff49bd6f3b7bf352921, type: 3}
+  - {fileID: 7388979517798793970, guid: bf4ac02a1afd5d742b4b3e6bd4101bce, type: 3}
+  - {fileID: 5904969338987636822, guid: cfec4b99154c8854086d9d40885439e6, type: 3}
+  - {fileID: 4651369199887611698, guid: 24153855c5af747449130046f057e703, type: 3}
+  - {fileID: 6267299570746777405, guid: 80af3d059ddde854bb6aac487c759edd, type: 3}
+  - {fileID: 4622822393719948484, guid: 90afc744f95881248af9ce561f694407, type: 3}
+  - {fileID: 534131757858318661, guid: f94a48d8069236443bdd3f37ecfaa0f7, type: 3}
+  - {fileID: 5573607893293970360, guid: 3d0a793ae3f80b24d8a061f9e15bf816, type: 3}
 --- !u!114 &97137264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310797445}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.21, y: 0, z: 0}
+  m_LocalPosition: {x: 8.38, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -809,6 +822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf8193aaa2c52740b4f97ca3fcdb74c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Apertar: 0
   _telaDePause: {fileID: 1780681043}
 --- !u!1 &743115512
 GameObject:

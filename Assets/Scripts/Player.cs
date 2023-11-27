@@ -97,6 +97,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            _iuGerenciador.MostrarTelaDeMorte();
+            _gerenciadorDoJogo.fimDeJogo = true;
+            _vidasLimite = 0;
+            Destroy(this.gameObject);
+        }
         dashSpeed += 0.0010f;
         veloc += 0.0010f;
         if (Input.GetKeyDown(KeyCode.P))

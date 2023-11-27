@@ -19,6 +19,11 @@ public class IAInimigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Destroy(this.gameObject);
+        }
+
         _velocInimigo += 0.00012f;
 
         if ( Input.GetKeyDown(KeyCode.P))

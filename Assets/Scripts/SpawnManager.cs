@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-          
+        
     }
 
     public IEnumerator RotinaGeracaoInimigo()

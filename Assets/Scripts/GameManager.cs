@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 { 
-  private bool isPaused = false;
-  public GameObject _telaDePause;
+    private bool isPaused = false;
+    public int Apertar = 0;
+    public GameObject _telaDePause;
 
    void Start ()
     {
@@ -26,10 +27,12 @@ public class GameManager : MonoBehaviour
        Time.timeScale = isPaused ? 0 : 1; // Pausar o tempo do jogo
         if (Time.timeScale == 0)
         {
+            Apertar = 1;
             _telaDePause.SetActive(true);
         }
         else if (Time.timeScale == 1)
         {
+            Apertar = 0;
             _telaDePause.SetActive(false); 
         }
    }
