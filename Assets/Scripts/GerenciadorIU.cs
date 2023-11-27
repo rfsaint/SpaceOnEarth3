@@ -23,11 +23,7 @@ public class GerenciadorIU : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-           Destroy(this._objects[0]);
-           Destroy(this._objects[1]);
-        }
+        
     }
 
     public void AtualizaVidas (int vidasAtuais) 
@@ -44,7 +40,6 @@ public class GerenciadorIU : MonoBehaviour
     public void MostrarTelaDeMorte()
     {
         _morte.SetActive(true);
-      
         Time.timeScale = 0;
       
     }
