@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9178511950273028257}
   - component: {fileID: 9178511950273028256}
   - component: {fileID: 9178511950273028287}
+  - component: {fileID: -9220450243521421492}
   - component: {fileID: 5993883390064935740}
   m_Layer: 0
   m_Name: "Explos\xE3o"
@@ -107,6 +108,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-9220450243521421492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9178511950273028286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3555a6afa6b4347ac8f7c5ca8fbf8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &5993883390064935740
 AudioSource:
   m_ObjectHideFlags: 0

@@ -9,12 +9,11 @@ public class IAInimigo : MonoBehaviour
     [SerializeField]
     private GameObject _explosaoDoInimigo;
     private GerenciadorIU _gerenciadorIU;
-    public Player ScriptPublic ;
+    public Player player ;
     // Start is called before the first frame update
     void Start()
     {
         _gerenciadorIU = GameObject.Find("Canvas").GetComponent<GerenciadorIU>();
-        ScriptPublic = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame

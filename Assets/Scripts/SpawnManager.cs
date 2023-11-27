@@ -24,20 +24,22 @@ public class SpawnManager : MonoBehaviour
     {
         _tituloDaTela.SetActive(true);
         _iuGerenciador = GameObject.Find("Canvas").GetComponent<GerenciadorIU>();
+
     }
 
     // Update is called once per frame
     public void Update()
     {
-
+          
     }
 
     public IEnumerator RotinaGeracaoInimigo()
     {
-            while (GerenciadorDoJogo == false)
+            while (true)
             {
 
                 Instantiate(_inimigoPrefab, new Vector3(-9.28f, Random.Range(5.3f, -5.3f), 0), Quaternion.identity);
+
                 yield return new WaitForSeconds(6.0f);
 
             }
@@ -45,20 +47,19 @@ public class SpawnManager : MonoBehaviour
 
   public IEnumerator RotinaGeracaoPU()
         {
-            while (GerenciadorDoJogo == false)
+            while (true)
             {
                 int PowerUpsAleatorio = Random.Range(0, 2);
 
-                Instantiate((_powerUps[PowerUpsAleatorio]), new Vector3(-9.28f, Random.Range(5.3f, -5.3f), 0), Quaternion.identity);
+                Instantiate((_powerUps[PowerUpsAleatorio]), new Vector3(9.28f, Random.Range(5.3f, -5.3f), 0), Quaternion.identity);
 
-                yield return new WaitForSeconds(Random.Range(7, 2));
+                yield return new WaitForSeconds(6.0f);
             }
         }
 
     public void IniciarCoroutines()
     {
-        StartCoroutine(RotinaGeracaoInimigo());
-        StartCoroutine(RotinaGeracaoPU());
-
+            StartCoroutine(RotinaGeracaoInimigo());
+            StartCoroutine(RotinaGeracaoPU());
     }
 }

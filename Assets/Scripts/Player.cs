@@ -30,11 +30,7 @@ public class Player : MonoBehaviour
     private int currentLives = 1;// Inicializa com uma vida
     public GameObject _explosaoPlayer;
     public GameObject _campoDeForca;
-    public GameObject _morte;
-    public Transform _mortePlayer;
-    public Transform _pause;
-    public bool mortePlayer = false;
-    private SpawnManager SpawnManager;
+    private SpawnManager _spawnManager;
 
     public void DanoAoPlayer()
     {
@@ -53,7 +49,7 @@ public class Player : MonoBehaviour
         {
             Instantiate(_explosaoPlayer, transform.position, Quaternion.identity);
             _gerenciadorDoJogo.fimDeJogo = true;
-            _iuGerenciador.MostrarTelaInicial();
+            _iuGerenciador.MostrarTelaDeMorte();
             Destroy(this.gameObject);
             
         }    
@@ -79,7 +75,7 @@ public class Player : MonoBehaviour
    public void Start()
     {
         _gerenciadorDoJogo = GameObject.Find("GerenciadorDoJogo").GetComponent<GerenciadorDoJogo>();
-        _morte.SetActive(false);
+        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         Debug.Log("Método Start de" + this.name);
         transform.position = new Vector3(-7.5f, 0, 0);
         initialRotation = transform.rotation;
@@ -90,18 +86,17 @@ public class Player : MonoBehaviour
             _iuGerenciador.AtualizaVidas(_vidasLimite);
         }
 
-        if (SpawnManager != null)
+        if (_spawnManager == true)
         {
-            SpawnManager.IniciarCoroutines();
+            _spawnManager.IniciarCoroutines();
         }
+
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     public void Update()
     {
-        _mortePlayer.position = Vector3.zero;
-        _pause.position = Vector3.zero;
         dashSpeed += 0.0010f;
         veloc += 0.0010f;
         if (Input.GetKeyDown(KeyCode.P))
@@ -115,10 +110,6 @@ public class Player : MonoBehaviour
             dashSpeed = 15.75f + 0.5f;
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            // algo
-        }
         MultplicateVeloc();
         if (isDashing == true)
         {
@@ -327,8 +318,7 @@ public class Player : MonoBehaviour
         while (true) 
         {
             veloc = veloc + 0.25f;
-            yield break;
-            new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
    
